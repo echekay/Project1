@@ -22,9 +22,10 @@
 
 var APIKey = "166a433c57516f51dfab1f7edaed8413";
 var userCity = $("#userZipcode").val().trim();
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=zip=01760,us" + "&appid=" + APIKey;
+var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=zip=92101,us" + "&appid=" + APIKey;
 // api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}
-$.ajax({
+
+  $.ajax({
     url: queryURL,
     method: "GET"
   })
@@ -34,6 +35,21 @@ $.ajax({
     console.log(queryURL);
     console.log(response);
   });
+
+$("#add-zip").on("click", function() {
+
+  // $.ajax({
+  //   url: queryURL,
+  //   method: "GET"
+  // })
+
+  // .done(function(response) {
+
+  //   console.log(queryURL);
+  //   console.log(response);
+  // })
+
+});
 
 
 </script>
