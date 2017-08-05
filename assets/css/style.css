@@ -4,10 +4,16 @@ img {
     max-height: 510px;
 }
 
-
+.form-control {
+    background: #ADFF2F;
+}
 
 
 .slideshow {}
+
+
+
+
 
 
 
@@ -19,9 +25,17 @@ img {
 
 
 
+
+
+
+
 /* Landscape tablets and medium desktops */
 
 @media (min-width: 992px) and (max-width: 1199px) {}
+
+
+
+
 
 
 
@@ -33,9 +47,17 @@ img {
 
 
 
+
+
+
+
 /* Landscape phones and portrait tablets */
 
 @media (max-width: 767px) {}
+
+
+
+
 
 
 
