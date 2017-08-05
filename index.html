@@ -3,56 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+
 </head>
 <body>
 
 <form>
-  <span id="searchZipcode">Search Zipcode: <input id="userZipcode" type="text" ><input id="add-zip" value="Add Zipcode" type="submit"></span>
+  <span id="searchCity">Search City: <input id="userInput" type="text" ><input id="add-city" type="submit"></span>
 </form>
-<div id="cityDiv">
-  <div id="weatherImage"></div>
+<br>
+<br>
+<br>
+
+<div id="weatherWidget">
   <div id="cityName"></div>
-  <div id=""></div>
+  <div id="weatherImage"></div>
+  <div id="cityTemp"></div>
+  <div id="weatherDescription"></div>
+  <div id="cityHigh"></div>
+  <div id="cityLow"></div>
+  <div id="cityHumidity"></div>
 </div>
-<script
+
+
+
+ <script
   src="http://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
-<script type="text/javascript">
-
-var APIKey = "166a433c57516f51dfab1f7edaed8413";
-var userCity = $("#userZipcode").val().trim();
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=zip=92101,us" + "&appid=" + APIKey;
-// api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}
-
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  })
-
-  .done(function(response) {
-
-    console.log(queryURL);
-    console.log(response);
-  });
-
-$("#add-zip").on("click", function() {
-
-  // $.ajax({
-  //   url: queryURL,
-  //   method: "GET"
-  // })
-
-  // .done(function(response) {
-
-  //   console.log(queryURL);
-  //   console.log(response);
-  // })
-
-});
-
-
-</script>
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js">
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+  <script src="assets/javascript/logic.js"></script>
 
 </body>
 </html>
