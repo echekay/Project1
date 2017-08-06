@@ -1,5 +1,6 @@
 // Open Weather API
 // ----------------
+// Still have to utilize firebase to store and then retrieve the user's city input and then dynamically generate a div in which it says "7 Day forecast for (user input city)."
 
  // Initialize Firebase
 var config = {
