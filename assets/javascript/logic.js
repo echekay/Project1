@@ -29,6 +29,7 @@ $( document ).ready(function() {
     console.log(userCity);
 
     clickCounter++;
+
     database.ref().set({
       clickCount: clickCounter
     })
