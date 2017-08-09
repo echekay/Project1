@@ -65,7 +65,7 @@ $( document ).ready(function() {
       });
 
 
-
+      $("#flickrGallery").empty();
       $.ajax({
         url: "https://api.flickr.com/services/rest/?",
         method: "GET",
@@ -79,18 +79,26 @@ $( document ).ready(function() {
           per_page: "9"
         }
       }).done(function(response) {
-        console.log(response);
-        var results = response.photos.photo;
-        console.log(results.length);
-        // Having trouble with this for loop. Trying to create a url by adding properties from the objects in the array. Keeps coming up as undefined values for each url component.
-        for (var i = 0; i < results.length; i++) {
-          var flickrDiv = $("<div><p>Hi</p>");
-          var url = "https://farm" + [i].farm + ".staticflickr.com/" + [i].server + "/" + [i].id + "_" + [i].secret + ".jpg";
-          flickrDiv.append("<img src='" + url + "'/>");
-          $("#flickrGallery").append(flickrDiv);
-        }
-      })
+          // console.log(response);
+          // var results = response.photos.photo;
+          // console.log(results.length)
+          // // Having trouble with this for loop. Trying to create a url by adding properties from the objects in the array. Keeps coming up as undefined values for each url component.
+          // for (var i = 0; i < results.length; i++) {
+          //   var flickrDiv = $("<div><p>Hi</p></div>");
+          //   // var url = "https://farm" + [i].farm + ".staticflickr.com/" + [i].server + "/" + [i].id + "_" + [i].secret + ".jpg";
+          //   // flickrDiv.append("<img src='" + url + "'/>");
+          //   $("#flickrGallery").append(flickrDiv);
+          // }
+          $.each(response.photos.photo, function(i, gp) {
+            var farmId = gp.farm;
+            var serverId = gp.server;
+            var id = gp.id;
+            var secret = gp.secret;
 
+            console.log(farmId + ',' + serverId + ',' + id + ',' + secret);
+            $("#flickrGallery").append('<img src=https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/>');
+          })
+        })
 
   });
 });
