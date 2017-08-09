@@ -63,5 +63,36 @@ $( document ).ready(function() {
           $("#weatherWidget").append(dayDiv);
         }
       });
+
+
+
+      $.ajax({
+        url: "https://api.flickr.com/services/rest/?",
+        method: "GET",
+        data: {
+          method: "flickr.photos.search",
+          tags: userCity,
+          tag_mode: "any",
+          api_key: "a63e0fedab4cffb4ac44817e1dad25bc",
+          format: "json",
+          nojsoncallback: "1",
+          per_page: "9"
+        }
+      }).done(function(response) {
+        console.log(response);
+        var results = response.photos.photo;
+        console.log(results.length);
+        // Having trouble with this for loop. Trying to create a url by adding properties from the objects in the array. Keeps coming up as undefined values for each url component.
+        for (var i = 0; i < results.length; i++) {
+          var flickrDiv = $("<div><p>Hi</p>");
+          var url = "https://farm" + [i].farm + ".staticflickr.com/" + [i].server + "/" + [i].id + "_" + [i].secret + ".jpg";
+          flickrDiv.append("<img src='" + url + "'/>");
+          $("#flickrGallery").append(flickrDiv);
+        }
+      })
+
+
   });
 });
+
+
