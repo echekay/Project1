@@ -1,8 +1,6 @@
-// Open Weather API
-// ----------------
-// Still have to utilize firebase to store and then retrieve the user's city input and then dynamically generate a div in which it says "7 Day forecast for (user input city)."
 
  // Initialize Firebase
+ // -------------------
 var config = {
   apiKey: "AIzaSyDSe1Yr6EF9cTjLUKTEW420pNN75tUc9hk",
   authDomain: "project1-1d843.firebaseapp.com",
@@ -16,25 +14,26 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-var clickCounter = 0;
+var city = "";
 
-
+// Main function as soon as document gets loaded.
+// ----------------------------------------------
 $( document ).ready(function() {
 
   $("#add-city").on("click", function() {
 
     event.preventDefault();
     $("#weatherWidget").empty();
+    city = $("#userInput").val().trim();
     var userCity = $("#userInput").val().trim();
     console.log(userCity);
 
-    clickCounter++;
-
     database.ref().set({
-      clickCount: clickCounter
-    })
+      city: city
+    });
 
-
+// Ajax call to display city weather based on user input.
+// ------------------------------------------------------
       $.ajax({
       url: "http://api.openweathermap.org/data/2.5/forecast/daily?",
       method: "GET",
@@ -64,7 +63,8 @@ $( document ).ready(function() {
         }
       });
 
-
+// Ajax call to pull images from Flickr based on user input.
+// ---------------------------------------------------------
       $("#flickrGallery").empty();
       $.ajax({
         url: "https://api.flickr.com/services/rest/?",
@@ -79,16 +79,7 @@ $( document ).ready(function() {
           per_page: "9"
         }
       }).done(function(response) {
-          // console.log(response);
-          // var results = response.photos.photo;
-          // console.log(results.length)
-          // // Having trouble with this for loop. Trying to create a url by adding properties from the objects in the array. Keeps coming up as undefined values for each url component.
-          // for (var i = 0; i < results.length; i++) {
-          //   var flickrDiv = $("<div><p>Hi</p></div>");
-          //   // var url = "https://farm" + [i].farm + ".staticflickr.com/" + [i].server + "/" + [i].id + "_" + [i].secret + ".jpg";
-          //   // flickrDiv.append("<img src='" + url + "'/>");
-          //   $("#flickrGallery").append(flickrDiv);
-          // }
+
           $.each(response.photos.photo, function(i, gp) {
             var farmId = gp.farm;
             var serverId = gp.server;
@@ -99,8 +90,29 @@ $( document ).ready(function() {
             $("#flickrGallery").append('<img src=https://farm' + farmId + '.staticflickr.com/' + serverId + '/' + id + '_' + secret + '.jpg"/>');
           })
         })
-
   });
+
+// Refencing firebase and grabbing data to display in HTML.
+// --------------------------------------------------------
+  database.ref().on("value", function(snapshot) {
+
+    console.log(snapshot.val());
+    console.log(snapshot.val().city);
+    $("#cityWeatherTitle").html("Here is the weather for " + snapshot.val().city + ":");
+  }, function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
 });
 
-
+// Garbage code that I need to look at and refactor later.
+          // console.log(response);
+          // var results = response.photos.photo;
+          // console.log(results.length)
+          // // Having trouble with this for loop. Trying to create a url by adding properties from the objects in the array. Keeps coming up as undefined values for each url component.
+          // for (var i = 0; i < results.length; i++) {
+          //   var flickrDiv = $("<div><p>Hi</p></div>");
+          //   // var url = "https://farm" + [i].farm + ".staticflickr.com/" + [i].server + "/" + [i].id + "_" + [i].secret + ".jpg";
+          //   // flickrDiv.append("<img src='" + url + "'/>");
+          //   $("#flickrGallery").append(flickrDiv);
+          // }
