@@ -13,8 +13,38 @@ img {
     margin: 0 auto;
 }
 
+#logo {
+    height: 80px;
+    width: 80px;
+    vertical-align: auto;
+}
 
 .slideshow {}
+
+.dayDiv {
+    display: inline-block;
+    border: solid 1px black;
+    border-right: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 11%;
+    text-align: center;
+}
+
+.dayDiv:last-child {
+    border-right: 1px solid black;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -42,9 +72,27 @@ img {
 
 
 
+
+
+
+
+
+
+
+
+
 /* Landscape tablets and medium desktops */
 
 @media (min-width: 992px) and (max-width: 1199px) {}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -72,9 +120,27 @@ img {
 
 
 
+
+
+
+
+
+
+
+
+
 /* Landscape phones and portrait tablets */
 
 @media (max-width: 767px) {}
+
+
+
+
+
+
+
+
+
 
 
 
