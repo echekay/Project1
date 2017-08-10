@@ -5,11 +5,20 @@ img {
 }
 
 .form-control {
-    background: #ADFF2F;
+    background: ;
+}
+
+.col-center {
+    float: none;
+    margin: 0 auto;
 }
 
 
 .slideshow {}
+
+
+
+
 
 
 
@@ -29,9 +38,17 @@ img {
 
 
 
+
+
+
+
 /* Landscape tablets and medium desktops */
 
 @media (min-width: 992px) and (max-width: 1199px) {}
+
+
+
+
 
 
 
@@ -51,9 +68,17 @@ img {
 
 
 
+
+
+
+
 /* Landscape phones and portrait tablets */
 
 @media (max-width: 767px) {}
+
+
+
+
 
 
 
